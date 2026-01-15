@@ -3,6 +3,9 @@ import Navbar from "./components/ui/Navbar";
 import Footer from "./components/ui/Footer";
 import HomePage from "./pages/HomePage";
 import GlobalVillagePage from "./pages/GlobalVillagePage";
+import AboutUsPage from "./pages/AboutUsPage";
+import TuldsPage from "./pages/TuldsPage";
+import BecomePartnerPage from "./pages/BecomePartnerPage";
 
 const App = () => {
   return (
@@ -13,6 +16,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/global-village" element={<GlobalVillagePage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/tulds" element={<TuldsPage />} />
+            <Route path="/become-partner" element={<BecomePartnerPage />} />
           </Routes>
         </main>
         <Footer />

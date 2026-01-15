@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const links = [
   { href: "/", label: "Home" },
-  {
-    label: "Projects",
-    children: [
-      { href: "/meetup", label: "Meetup" },
-      { href: "/global-village", label: "Global Village" },
-      { href: "/tulds", label: "TULDS" },
-    ],
-  },
-  { href: "/about us", label: "About Us" },
-  { href: "#contact", label: "Become a Partner" }
+  { href: "https://meetuppro.com/", label: "MeetupPro", target: "_blank" },
+  { href: "/global-village", label: "Global Village" },
+  { href: "/tulds", label: "TULDS" },
+  { href: "/about-us", label: "About Us" },
 ];
 
 export default function Navbar() {
@@ -32,145 +26,128 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "py-2" : "py-4"
         }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className={`relative rounded-full transition-all duration-300 ${scrolled
-            ? "bg-white/90 backdrop-blur-md shadow-lg shadow-black/5"
-            : "bg-white/70 backdrop-blur-sm shadow-sm"
+          className={`relative rounded-2xl transition-all duration-500 ${scrolled
+            ? "bg-white/80 backdrop-blur-lg shadow-xl shadow-blue-900/5 border border-white/20"
+            : "bg-white/40 backdrop-blur-md shadow-sm border border-white/10"
             }`}
         >
           <div className="flex items-center justify-between h-16 px-6">
-            {/* Left: Logo */}
-            <div className="">
-            </div>
+            {/* Left: Logo/Name */}
+            <Link to="/" className="flex items-center gap-2 group">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-300">
+                <span className="text-white font-bold text-xl">H</span>
+              </div>
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 hidden sm:block">
+                Hadrumet <span className="text-blue-600">Projects</span>
+              </span>
+            </Link>
 
             {/* Center: Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
               {links.map((l) => (
-                l.children ? (
-                  <div key={l.label} className="relative group">
-                    <button className="flex items-center gap-1 px-4 py-2 text-gray-600 hover:text-blue-600 font-medium text-base transition-colors duration-300">
-                      {l.label}
-                      <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </button>
-                    {/* Dropdown Menu */}
-                    <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
-                      <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-[200px]">
-                        {l.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            to={child.href}
-                            className="block px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                l.href.startsWith("http") ? (
+                  <a
+                    key={l.label}
+                    href={l.href}
+                    target={l.target}
+                    rel={l.target === "_blank" ? "noopener noreferrer" : ""}
+                    className="relative px-4 py-2 text-gray-600 hover:text-blue-600 font-semibold text-sm transition-all duration-300 rounded-lg hover:bg-blue-50/50 group"
+                  >
+                    {l.label}
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 transition-all duration-300 rounded-full"></span>
+                  </a>
                 ) : (
-                  l.href && (l.href.startsWith("/") ? (
-                    <Link
-                      key={l.href}
-                      to={l.href}
-                      className="relative px-4 py-2 text-gray-600 hover:text-blue-600 font-medium text-base transition-colors duration-300 group"
-                    >
-                      {l.label}
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 group-hover:w-3/4 transition-all duration-300 rounded-full"></span>
-                    </Link>
-                  ) : (
-                    <a
-                      key={l.href}
-                      href={l.href}
-                      className="relative px-4 py-2 text-gray-600 hover:text-blue-600 font-medium text-base transition-colors duration-300 group"
-                    >
-                      {l.label}
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-500 group-hover:w-3/4 transition-all duration-300 rounded-full"></span>
-                    </a>
-                  ))
+                  <Link
+                    key={l.label}
+                    to={l.href}
+                    className="relative px-4 py-2 text-gray-600 hover:text-blue-600 font-semibold text-sm transition-all duration-300 rounded-lg hover:bg-blue-50/50 group"
+                  >
+                    {l.label}
+                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-600 group-hover:w-1/2 transition-all duration-300 rounded-full"></span>
+                  </Link>
                 )
               ))}
             </nav>
 
             {/* Right: CTA Button + Mobile Toggle */}
-            <div className="flex items-center gap-3">
-
+            <div className="flex items-center gap-4">
+              <Link
+                to="/become-partner"
+                className="hidden md:flex items-center justify-center px-6 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-sm rounded-full shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
+              >
+                Become a Partner
+              </Link>
 
               {/* Mobile menu button */}
               <button
                 aria-label="Toggle menu"
                 onClick={() => setOpen((v) => !v)}
-                className="md:hidden p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 focus:outline-none"
               >
-                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {open ? (
-                    <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  ) : (
-                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  )}
-                </svg>
+                <div className="relative w-6 h-5">
+                  <span className={`absolute left-0 block w-6 h-0.5 bg-current transition-all duration-300 ${open ? 'top-2 rotate-45' : 'top-0'}`}></span>
+                  <span className={`absolute left-0 top-2 block w-6 h-0.5 bg-current transition-all duration-300 ${open ? 'opacity-0' : 'opacity-100'}`}></span>
+                  <span className={`absolute left-0 block w-6 h-0.5 bg-current transition-all duration-300 ${open ? 'top-2 -rotate-45' : 'top-4'}`}></span>
+                </div>
               </button>
             </div>
           </div>
 
           {/* Mobile Menu Dropdown */}
           <div
-            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+            className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
               }`}
           >
-            <div className="px-4 py-4 border-t border-gray-100">
-              <nav className="flex flex-col gap-1">
+            <div className="px-6 py-8 space-y-6 border-t border-gray-100/50 bg-white/50 backdrop-blur-xl rounded-b-2xl">
+              <nav className="flex flex-col gap-2">
                 {links.map((l, idx) => (
-                  l.children ? (
-                    <div key={l.label} className="mt-2 mb-2">
-                      <div className="px-4 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                        {l.label}
-                      </div>
-                      <div className="flex flex-col gap-1 ml-2">
-                        {l.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            to={child.href}
-                            onClick={() => setOpen(false)}
-                            className="px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+                  l.href.startsWith("http") ? (
+                    <a
+                      key={l.label}
+                      href={l.href}
+                      target={l.target}
+                      rel={l.target === "_blank" ? "noopener noreferrer" : ""}
+                      onClick={() => setOpen(false)}
+                      className="px-4 py-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-between group"
+                      style={{
+                        animation: open ? `slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.1}s both` : 'none'
+                      }}
+                    >
+                      {l.label}
+                      <svg className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
                   ) : (
-                    l.href && (l.href.startsWith("/") ? (
-                      <Link
-                        key={l.href}
-                        to={l.href}
-                        onClick={() => setOpen(false)}
-                        className="px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-300 transform hover:translate-x-1"
-                        style={{
-                          animation: open ? `slideIn 0.3s ease-out ${idx * 0.05}s both` : 'none'
-                        }}
-                      >
-                        {l.label}
-                      </Link>
-                    ) : (
-                      <a
-                        key={l.href}
-                        href={l.href}
-                        onClick={() => setOpen(false)}
-                        className="px-4 py-3 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-all duration-300 transform hover:translate-x-1"
-                        style={{
-                          animation: open ? `slideIn 0.3s ease-out ${idx * 0.05}s both` : 'none'
-                        }}
-                      >
-                        {l.label}
-                      </a>
-                    ))
+                    <Link
+                      key={l.label}
+                      to={l.href}
+                      onClick={() => setOpen(false)}
+                      className="px-4 py-4 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-between group"
+                      style={{
+                        animation: open ? `slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.1}s both` : 'none'
+                      }}
+                    >
+                      {l.label}
+                      <svg className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
                   )
                 ))}
-
               </nav>
+
+              <div className="pt-4">
+                <Link
+                  to="/become-partner"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-center w-full py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-lg rounded-2xl shadow-xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300"
+                >
+                  Become a Partner
+                </Link>
+              </div>
             </div>
           </div>
         </div>
