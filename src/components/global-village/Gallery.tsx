@@ -8,64 +8,101 @@ import img4 from "../../assets/global-village/about.jpeg";
 const Gallery: React.FC = () => {
   const [selectedImg, setSelectedImg] = React.useState<string | null>(null);
 
-  const images = [
-    img1, img2, img3, img4,
-    "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1528605248644-14dd04cb11c7?w=800&h=600&fit=crop",
-    "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=600&fit=crop",
-  ];
+  // 12 Images total
+  const images = [img1, img2, img3, img4, img1, img2, img4, img3];
 
   return (
-    <section className="py-24 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-24 px-4 overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header Section */}
         <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Captured Moments</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Rediscovering the color, energy, and joy of our previous editions.
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-100 rounded-full text-blue-600 font-medium text-sm">
+            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+            Photo Gallery
+          </div>
+
+          <h2 className="text-4xl md:text-5xl mt-3 font-bold text-gray-900">
+            Captured{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+              Moments
+            </span>
+          </h2>
+
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Rediscovering the color, energy, and joy of our previous edition.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((src, index) => (
-            <div
-              key={index}
-              className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg aspect-[4/3]"
-              onClick={() => setSelectedImg(src)}
-            >
-              <img
-                src={src}
-                alt={`Gallery image ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <div className="bg-white/90 p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                  </svg>
-                </div>
+        {/* 
+           Bento Grid Layout 
+           - grid-cols-1 on mobile
+           - grid-cols-2 on tablet
+           - grid-cols-4 on desktop
+           - auto-rows ensures consistent height
+        */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[250px]">
+          {images.map((img, i) => {
+            // Configuration for Bento Layout
+            const isFirst = i === 0;
+            const isWide = i === 5 || i === 8;
+
+            // LOGIC: Show only first 4 images on mobile, show all on md screens and up
+            const visibilityClass = i > 3 ? "hidden md:block" : "block";
+
+            // Grid Spanning Logic for Desktop
+            let spanClass = "";
+            if (isFirst)
+              spanClass = "md:col-span-2 md:row-span-2"; // Big square
+            else if (isWide)
+              spanClass = "md:col-span-2"; // Wide rectangle
+            else spanClass = "md:col-span-1"; // Standard square
+
+            return (
+              <div
+                key={i}
+                className={`relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg ${spanClass} ${visibilityClass}`}
+                onClick={() => setSelectedImg(img)}
+              >
+                <img
+                  src={img}
+                  alt={`Gallery image ${i + 1}`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
       {/* Lightbox Modal */}
       {selectedImg && (
         <div
-          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 backdrop-blur-sm"
           onClick={() => setSelectedImg(null)}
         >
-          <button className="absolute top-8 right-8 text-white hover:text-blue-400 transition-colors">
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          {/* Close Button */}
+          <button className="absolute top-4 sm:top-8 right-4 sm:right-8 text-white/80 hover:text-white transition-colors z-10 p-2">
+            <svg
+              className="w-8 h-8 sm:w-10 sm:h-10"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
+
           <img
             src={selectedImg}
             alt="Enlarged gallery view"
-            className="max-w-full max-h-full rounded-lg shadow-2xl animate-zoom-in"
+            className="max-w-full max-h-[90vh] rounded-lg shadow-2xl animate-zoom-in object-contain"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
           />
         </div>
       )}

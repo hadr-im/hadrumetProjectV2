@@ -6,6 +6,7 @@ import GlobalVillagePage from "./pages/GlobalVillagePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import TuldsPage from "./pages/TuldsPage";
 import BecomePartnerPage from "./pages/BecomePartnerPage";
+import MeetupProPage from "./pages/MeetupProPage";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/tulds" element={<TuldsPage />} />
             <Route path="/become-partner" element={<BecomePartnerPage />} />
+            <Route path="/meetup-pro" element={<MeetupProPage />} />
           </Routes>
         </main>
         <Footer />

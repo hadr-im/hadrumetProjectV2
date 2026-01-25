@@ -40,8 +40,8 @@ export default function PartnersSection() {
             Our <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">Projects</span>
           </h2>
 
-          <p className="max-w-2xl mx-auto text-lg text-gray-600 leading-relaxed">
-            Discover our latest work in creating immersive digital experiences that engage audiences and deliver measurable results for our partners.
+          <p className="max-w-2xl mx-auto mt-2 text-lg text-gray-600 leading-relaxed">
+            Explore our initiatives driving positive impact and developing future leaders.
           </p>
         </div>
 
