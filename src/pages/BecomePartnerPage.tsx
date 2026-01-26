@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Check, Loader2, Send } from "lucide-react";
+import { Check, Loader2 } from "lucide-react";
 const FORM_URL = import.meta.env.VITE_FORM_URL;
 const FORM_TOKEN = import.meta.env.VITE_FORM_TOKEN;
 
