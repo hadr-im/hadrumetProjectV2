@@ -8,12 +8,16 @@ import TrustedPartnersCarousel from "../components/ui/TrustedPartnersCarousel";
 import Countdown from "../components/meetup-pro/Countdown";
 import ClosingCTA from "../components/meetup-pro/ClosingCTA";
 
-// Placeholder partner logos - replace with actual MeetUp Pro partner logos
-import p1 from "../assets/global-village/p1.png";
-import p2 from "../assets/global-village/p2.png";
-import p3 from "../assets/global-village/p3.png";
-import p4 from "../assets/global-village/p4.png";
-import p5 from "../assets/global-village/p5.png";
+import p1 from "../assets/meetupPro/p1.jpg";
+import p2 from "../assets/meetupPro/p2.png";
+import p3 from "../assets/meetupPro/p3.png";
+import p4 from "../assets/meetupPro/p4.png";
+import p5 from "../assets/meetupPro/p5.png";
+import p6 from "../assets/meetupPro/p6.webp";
+import p7 from "../assets/meetupPro/p7.png";
+import p8 from "../assets/meetupPro/p8.png";
+import p9 from "../assets/meetupPro/p9.jpg";
+import p10 from "../assets/meetupPro/p10.jpg";
 
 const partners = [
   { name: "Partner 1", logo: p1 },
@@ -21,6 +25,11 @@ const partners = [
   { name: "Partner 3", logo: p3 },
   { name: "Partner 4", logo: p4 },
   { name: "Partner 5", logo: p5 },
+  { name: "Partner 6", logo: p6 },
+  { name: "Partner 7", logo: p7 },
+  { name: "Partner 8", logo: p8 },
+  { name: "Partner 9", logo: p9 },
+  { name: "Partner 10", logo: p10 },
 ];
 
 const MeetupProPage: React.FC = () => {
