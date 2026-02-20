@@ -54,7 +54,7 @@ const Countdown: React.FC = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-3 text-gray-900">
             Countdown to{" "}
             <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              MeetUp Pro 3.0
+              MeetUp Pro 4.0
             </span>
           </h2>
 
