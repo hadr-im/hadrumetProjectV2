@@ -3,10 +3,10 @@ import CountUp from "~/components/CountUp";
 
 const EventNumbers: React.FC = () => {
   const stats = [
-    { label: "Attendees", value: 700 },
-    { label: "Professionals", value: 200 },
-    { label: "Businesses", value: 30 },
-    { label: "SSOs and Ecosystem Enablers", value: 10 },
+    { label: "Attendees", value: 850 },
+    { label: "Professionals", value: 140 },
+    { label: "Businesses", value: 25 },
+    { label: "Field of Activity", value: 15 },
   ];
 
   return (
