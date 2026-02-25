@@ -83,7 +83,7 @@ export default function Hero() {
           <div className="text-center">
             <CountUp
               from={0}
-              to={100}
+              to={4}
               separator=","
               direction="up"
               duration={1}
@@ -95,7 +95,7 @@ export default function Hero() {
           <div className="text-center">
             <CountUp
               from={0}
-              to={50}
+              to={25}
               separator=","
               direction="up"
               duration={1}
@@ -109,7 +109,7 @@ export default function Hero() {
           <div className="text-center">
             <CountUp
               from={0}
-              to={1000}
+              to={400}
               separator=","
               direction="up"
               duration={1}
