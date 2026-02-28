@@ -29,7 +29,7 @@ const GlobalVillagePage: React.FC = () => {
       <LastEditionStats />
       <About />
       <Objectives />
-      <Gallery />
+       {/* <Gallery /> */}
       <Venue />
       <TrustedPartnersCarousel
         partners={partners}
@@ -41,3 +41,4 @@ const GlobalVillagePage: React.FC = () => {
 };
 
 export default GlobalVillagePage;
+
