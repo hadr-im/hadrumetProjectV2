@@ -3,9 +3,10 @@ import CountUp from "~/components/CountUp";
 
 const LastEditionStats: React.FC = () => {
   const stats = [
-    { label: "Nationalities", value: 10 },
-    { label: "Participants", value: 300 },
-    { label: "Internationals", value: 100 },
+    { label: "Partners", value: 8 },
+    { label: "Attendees", value: 218 },
+    { label: "Registrations", value: 375 },
+    { label: "Internationals", value: 60 },
   ];
 
   return (
@@ -34,7 +35,7 @@ const LastEditionStats: React.FC = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 max-w-5xl mx-auto">
           {stats.map((stat, idx) => (
             <div key={idx} className="group relative  text-center ">
               <div className="relative z-10">
