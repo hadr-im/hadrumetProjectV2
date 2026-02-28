@@ -3,7 +3,7 @@ import Hero from "../components/global-village/Hero";
 import LastEditionStats from "../components/global-village/LastEditionStats";
 import About from "../components/global-village/About";
 import Objectives from "../components/global-village/Objectives";
-import Gallery from "../components/global-village/Gallery";
+//import Gallery from "../components/global-village/Gallery";
 import Venue from "../components/global-village/Venue";
 import TrustedPartnersCarousel from "../components/ui/TrustedPartnersCarousel";
 import ClosingCTA from "../components/global-village/ClosingCTA";
@@ -41,4 +41,5 @@ const GlobalVillagePage: React.FC = () => {
 };
 
 export default GlobalVillagePage;
+
 
