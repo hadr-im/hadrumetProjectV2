@@ -1,7 +1,7 @@
 import ProjectCard from "./ui/ProjectCard";
 import meetup from "../assets/meetupPro/meetup_pro_2.png";
 import globalVillage from "../assets/global-village/globalv.jpg";
-
+import tulds from "../assets/tulds.png"
 export default function PartnersSection() {
   const projects = [
     {
@@ -19,8 +19,7 @@ export default function PartnersSection() {
     {
       title: "TULD'S",
       description: "Professional workshop and exhibition event",
-      image:
-        "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600&fit=crop",
+      image:tulds,
       href: "/tulds",
     },
   ];
