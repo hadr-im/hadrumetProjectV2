@@ -1,16 +1,21 @@
 import React from "react";
+import video from "../../assets/tulds.mp4"
 
 const Hero: React.FC = () => {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Video Background */}
+       {/* Video Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <iframe
-          src="https://www.youtube.com/embed/IlwSNF_8G4c?autoplay=1&mute=1&loop=1&playlist=IlwSNF_8G4c&controls=0&modestbranding=1&showinfo=0&rel=0"
-          className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2"
-          allow="autoplay; encrypted-media"
-          title="Background Video"
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover"
+        >
+          <source src={video} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         {/* Dark Overlay with Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
       </div>
